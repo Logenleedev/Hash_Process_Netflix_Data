@@ -1,7 +1,7 @@
 {
-  "name": "your-awesome-website-basic-website-template-node",
+  "name": "Netflix User Study Framework",
   "version": "1.0.0",
-  "description": "YOUR PROJECT DESCRIPTION GOES HERE",
+  "description": "Encode username into prolific id",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/amyhua/basic-website-template-node.git"
   },
-  "keywords": [
-    "Girls",
-    "Who",
-    "Code",
-    "website",
-    "template",
-    "node"
-  ],
   "author": "YOUR NAME GOES HERE",
   "bugs": {
     "url": "https://github.com/amyhua/basic-website-template-node/issues"
