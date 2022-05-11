@@ -25,8 +25,12 @@
   },
   "homepage": "https://github.com/amyhua/basic-website-template-node#readme",
   "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.0.5",
     "express": "^4.14.0",
     "http": "0.0.0",
-    "nodemon": "^1.11.0"
+    "multer": "^1.4.4",
+    "nodemon": "^1.11.0",
+    "os": "^0.1.2"
   }
 }
