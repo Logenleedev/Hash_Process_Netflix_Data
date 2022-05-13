@@ -18,9 +18,8 @@ const bodyParser = require('body-parser')
 var router = express();
 var server = http.createServer(router);
 
-const app = express();
 
-app.use(bodyParser.json())
+router.use(bodyParser.json())
 router.use(express.static(path.resolve(__dirname, 'client')));
 
 console.log('Booting up the server! Please wait until finished...')
@@ -30,10 +29,14 @@ server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   console.log("All ready! Server listening at", addr.address + ":" + addr.port);
 });
 
-router.post('/read', upload.single('file'), (req, res) => {
+router.post('/csv_upload', upload.single('file'), (req, res) => {
   const file = req.file
 
+  var username = req.body.userSearchInput;
+  console.log(username);
+
   const data = fs.readFileSync(file.path)
+  
   parse(data, (err, records) => {
     if (err) {
       console.error(err)
@@ -42,4 +45,6 @@ router.post('/read', upload.single('file'), (req, res) => {
 
     return res.json({data: records})
   })
+
 })
+
