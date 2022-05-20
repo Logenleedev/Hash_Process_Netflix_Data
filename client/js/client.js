@@ -2,6 +2,8 @@
 const fileInput = document.getElementById('file')
 const submitFile = document.getElementById('submitFile')
 const btn1 = document.getElementById('submitInfo')
+const btn2 = document.getElementById('finalsubmitFile')
+
 
 let file = null
 let username = null
@@ -20,6 +22,7 @@ btn1.addEventListener('click', function () {
     prolific_id = document.getElementById('prolific_id').value
     profile_hashmap[username] = prolific_id
 
+    
 })
 
 
@@ -29,8 +32,13 @@ submitFile.addEventListener('click', function () {
     alert('Please choose a CSV file')
     return
   }
+  const username_form = document.getElementById('Username')
+  const prolific_id_form = document.getElementById('prolific_id')
+  const file_upload_field = document.getElementById('file')
 
-
+  username_form.value = ''
+  prolific_id_form.value = ''
+  file_upload_field.value = ''
 
   const formData = new FormData()
   
@@ -43,14 +51,16 @@ submitFile.addEventListener('click', function () {
 
   fetch('/csv_upload', {
     method: 'POST',
-    body: formData
+    body: formData,
+    redirect: 'follow'
   })
   .then((response) => response.json())
   .then(({ data }) => {
     if (data.length) {
     //   console.log(data)
       const columns = data[0]
-      
+
+      console.log(columns)
       let data_filtered = []
 
       for(let i = 1; i < data.length; i++){
@@ -63,8 +73,37 @@ submitFile.addEventListener('click', function () {
       if (data_filtered.length == 0){
           alert("Something is wrong!")
       } else {
+       
 
-        const rows = data_filtered.splice(1).map((arr) => {
+        let csv = []
+        
+        console.log(data_filtered[0])
+        for (j = 0; j < data_filtered.length; j++){
+          let map = {}
+          for (i = 0; i < data_filtered[j].length; i++){
+            map[columns[i]] = data_filtered[j][i]
+          }
+          csv.push(map)
+          map = {}
+        }
+
+        console.log(csv)
+
+        btn2.addEventListener('click', function () {
+          fetch('/submission', {
+            method: 'POST',
+            body: JSON.stringify({data: csv}),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then((response) => response.json())
+          .then(({ data }) => {console.log(data)})
+        })
+
+        // console.log(data_filtered[0])
+
+        const rows = data_filtered.splice(0).map((arr) => {
             const obj = {}
             columns.forEach((column, index) => {
               obj[column] = arr[index]
@@ -72,9 +111,10 @@ submitFile.addEventListener('click', function () {
             
             return obj
           })
-    
-        //   console.log(rows, columns)
-        
+         
+
+
+
         const table = new Tabulator("#csvTable", {
             height:"300px",
             data: rows,
@@ -88,3 +128,5 @@ submitFile.addEventListener('click', function () {
     }
   })
   .catch((e) => alert(e.message))})
+
+
