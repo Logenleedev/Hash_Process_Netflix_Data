@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "engines": {
+    "node": "8.9.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amyhua/basic-website-template-node.git"
