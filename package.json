@@ -21,9 +21,9 @@
   "homepage": "https://github.com/amyhua/basic-website-template-node#readme",
   "dependencies": {
     "aws-sdk": "^2.1139.0",
-    "csv-parser": "^3.0.0",
+    "csv-parser": "*",
     "csv-stringify": "^6.0.5",
-    "express": "^4.14.0",
+    "express": "*",
     "generate-unique-id": "^2.0.1",
     "http": "0.0.0",
     "multer": "^1.4.4",
