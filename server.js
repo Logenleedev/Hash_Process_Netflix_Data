@@ -27,7 +27,7 @@ const ID = process.env.ID;
 const SECRET = process.env.SECRET;
 var random = Math.floor(Math.random() * 900000000000000000);
 
-filename = random + '.' + 'users.json';
+filename = random + '-' + 'users.json';
 // The name of the bucket that you have created
 const BUCKET_NAME = 'netflix-user-uata';
 const s3 = new AWS.S3({
