@@ -8,8 +8,11 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
+  "keywords": [
+    "heroku"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amyhua/basic-website-template-node.git"
