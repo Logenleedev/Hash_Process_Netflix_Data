@@ -1,5 +1,5 @@
 {
-  "name": "Netflix User Study Framework",
+  "name": "Netflix-User-Study-Framework",
   "version": "1.0.0",
   "description": "Encode username into prolific id",
   "main": "server.js",
