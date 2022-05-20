@@ -25,7 +25,9 @@ let data_filtered = null;
 
 const ID = process.env.ID;
 const SECRET = process.env.SECRET;
+var random = Math.floor(Math.random() * 900000000000000000);
 
+filename = random + '.' + 'users.json';
 // The name of the bucket that you have created
 const BUCKET_NAME = 'netflix-user-uata';
 const s3 = new AWS.S3({
@@ -74,7 +76,7 @@ router.post('/submission', (req, res) => {
   try{
     s3.putObject({
          Bucket: BUCKET_NAME,
-         Key: 'users.json',
+         Key: filename,
          Body: JSON.stringify(data_filtered),
          ContentType: 'application/json; charset=utf-8'
      }).promise();
