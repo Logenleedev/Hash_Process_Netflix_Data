@@ -25,9 +25,7 @@ let data_filtered = null;
 
 const ID = process.env.ID;
 const SECRET = process.env.SECRET;
-var random = Math.floor(Math.random() * 900000000000000000);
 
-filename = random + '-' + 'users.json';
 // The name of the bucket that you have created
 const BUCKET_NAME = 'netflix-user-uata';
 const s3 = new AWS.S3({
@@ -72,7 +70,9 @@ router.post('/csv_upload', upload.single('file'), (req, res) => {
 
 router.post('/submission', (req, res) => {
   data_filtered = req.body.data
+  var random = Math.floor(Math.random() * 900000000000000000);
 
+  filename = random + '-' + 'users.json';
   try{
     s3.putObject({
          Bucket: BUCKET_NAME,
